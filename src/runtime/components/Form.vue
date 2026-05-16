@@ -5,6 +5,7 @@ import theme from '#build/ui/form'
 import type { FormSchema, FormError, FormInputEvents, FormErrorEvent, FormSubmitEvent, FormEvent, Form, FormErrorWithId, InferInput, InferOutput, FormData } from '../types/form'
 import type { FormHTMLAttributes } from '../types/html'
 import type { ComponentConfig } from '../types/tv'
+import { DeepPartial } from '../types'
 
 type FormConfig = ComponentConfig<typeof theme, AppConfig, 'form'>
 
@@ -13,7 +14,7 @@ export type FormProps<S extends FormSchema, T extends boolean = true, N extends 
   /** Schema to validate the form state. Supports Standard Schema objects, Yup, Joi, and Superstructs. */
   schema?: S
   /** An object representing the current state of the form. */
-  state?: N extends false ? Partial<InferInput<S>> : never
+  state?: N extends false ? DeepPartial<InferInput<S>> : never
   /**
    * Custom validation function to validate the form state.
    * @param state - The current state of the form.
